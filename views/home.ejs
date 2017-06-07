@@ -1,0 +1,42 @@
+<!-- views/home.ejs -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Bullet Task Management</title>
+    <link rel="stylesheet" href="/css/semantic.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <%- include('partials/navbar') %>
+        <div class="jumbotron">
+            <h1>Task Management</h1>
+            <p class="lead">Check out our articles below!</p>
+        </div>
+        <div class="ui list tlist">
+          <div class="item">
+            <div class="header">Task 1 Header</div>
+            Task 1 body
+          </div>
+          <div class="item">
+            <div class="header">Task 2 Header</div>
+            Task 2 body
+          </div>
+          <div class="item">
+            <div class="header">Task 3 Header</div>
+            Task 3 body
+          </div>
+          <div class="item">
+            <div class="header">Task 4 Header</div>
+            Task 4 Body
+          </div>
+        </div>
+        <%- include('partials/footer') %>
+    </div>
+</body>
+
+</html>
