@@ -10,7 +10,7 @@ var models = require('./models');
 var Task = models.Task;
 var User = models.User;
 var user_id = '5937f4ebb981c418c1ecdee0';
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
 
 // parse urlencoded request bodies into req.body
@@ -27,18 +27,35 @@ app.get('/', function(req, res){
 //add a public folder to static route
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/tasks', function(req, res){
-		Task.find({ creator: 5937f4ebb981c418c1ecdee0 })
+	res.sendFile(__dirname + '/public/bullet.html');
+		Task.find({'creator._id':'5937f4ebb981c418c1ecdee0'})
 		.exec(function(err, results){
 			if (!err){
 				console.log(results);
+				return results;
 			}
 			else {
 				console.log('err occured: '+err);
 			}
 		});
-		res.render('home');
 });
 
+app.get('/api/getData', function (req, res){
+	Task.find({'creator._id':'5937f4ebb981c418c1ecdee0'}).
+	exec(function(err, results){
+		if (!err){
+			res.setHeader('Content-Type', 'application/json');
+			res.setHeader('200', 'Success');
+			res.sendStatus('200');
+			res.send(JSON.stringify(results));
+		}
+		else {
+			console.log('error occured '+err);
+		}
+
+	});
+	
+});
 app.post('/login', jsonParser, function(req,res){
 	User.find({email: req.body.email}, function (err, results){
 		if (results.length){ // if (results.length > 0)
