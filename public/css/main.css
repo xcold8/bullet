@@ -1,18 +1,22 @@
-body{ background: #e9d4b3; /* Old browsers */
-background: -moz-radial-gradient(center, ellipse cover, #e9d4b3 73%, #c19e67 97%); /* FF3.6-15 */
-background: -webkit-radial-gradient(center, ellipse cover, #e9d4b3 73%,#c19e67 97%); /* Chrome10-25,Safari5.1-6 */
-background: radial-gradient(ellipse at center, #e9d4b3 73%,#c19e67 97%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9d4b3', endColorstr='#c19e67',GradientType=1 );} /* IE6-9 fallback on horizontal gradient */
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f6f8f9+0,e5ebee+50,d7dee3+100,f5f7f9+100 */
+body{
+background: #f6f8f9; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, #f6f8f9 0%, #e5ebee 50%, #d7dee3 100%, #f5f7f9 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, #f6f8f9 0%,#e5ebee 50%,#d7dee3 100%,#f5f7f9 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, #f6f8f9 0%,#e5ebee 50%,#d7dee3 100%,#f5f7f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=1 );
+} /* IE6-9 fallback on horizontal gradient */
 .container{margin: 0 auto;position:absolute;}
 .container .header{;}
-.container .header h1{text-align: center;color:purple;}
-.container .header h2{text-align: center;color:purple;}
+.container .header h1{text-align: center;color:yellow;text-shadow: 2px 2px black;}
+.container .header h2{text-align: center;color:purple;text-shadow: 2px 2px silver;}
 .container .header h3{text-align:center;}
-.container .tasklist{width:60%;margin:0 auto;}
-.container .tasklist .item{border: 1px solid; border-radius: 4px;}
+.container .tasklist{width:60%;margin:0 auto;width:35%;}
+.container .tasklist .item{border: 3px solid; border-radius: 4px;border-color:purple;}
 .container .tasklist .item .image{background-image: url('/images/bullet_triangle_grey.png');background-repeat:no-repeat;}
 .container .tasklist .item .image:hover{background-image: url('/images/bullet_triangle_blue.png');background-repeat:no-repeat;}
-.container .tasklist .item .content{padding-top:50px;}
+.container .tasklist .item .content{padding-top:50px;max-height:0;transition: max-height 3.15s ease-out;overflow:hidden;}
+.container .tasklist .item .content:hover{max-height:500px;transition: max-height 4.25 ease-in;}
 .container .tasklist .item .content:hover > .metadata{display:inline; line-height:2em;}
 .container .tasklist .item .content .header{;}
 .container .tasklist .item .content .description{;}
