@@ -10,8 +10,7 @@ var models = require('./models');
 var Task = models.Task;
 var User = models.User;
 var user_id = '5937f4ebb981c418c1ecdee0';
-//app.set('view engine', 'ejs');
-
+require('handlebars');
 
 // parse urlencoded request bodies into req.body
 var bodyParser = require('body-parser');
@@ -41,20 +40,13 @@ app.get('/tasks', function(req, res){
 });
 
 app.get('/api/getData', function (req, res){
-	Task.find({'creator._id':'5937f4ebb981c418c1ecdee0'}).
-	exec(function(err, results){
+	Task.find({'creator._id':'5937f4ebb981c418c1ecdee0'}, function(err, results){
 		if (!err){
-			res.setHeader('Content-Type', 'application/json');
-			res.setHeader('200', 'Success');
-			res.sendStatus('200');
-			res.send(JSON.stringify(results));
+			res.json(results);
+		} else {
+		 	console.log('Error occured '+err);
 		}
-		else {
-			console.log('error occured '+err);
-		}
-
 	});
-	
 });
 app.post('/login', jsonParser, function(req,res){
 	User.find({email: req.body.email}, function (err, results){
