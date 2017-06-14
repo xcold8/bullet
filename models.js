@@ -21,8 +21,8 @@ var schemaTasks = new Schema({
 	body: String,
 	creator: {type: Schema.ObjectId, ref:'User'},
 	assignees: [{type: Schema.ObjectId, ref:'User'}],
-	status: Number,
-	tasktype: Number,
+	status: String,
+	tasktype: String,
 	created_ts: Date,
 	updated_ts: { type: Date, default: Date.now },
 });

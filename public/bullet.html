@@ -24,10 +24,11 @@
         </div><br/>
       <div class="metadata">
         <div class="creator">
-          <span><b>Created By:</b>{{_id}}</span>
+          <span><b>Created By:</b>{{creator.first_name}} {{creator.last_name}}</span>
         </div>
+        
         <div class="assignees">
-          <span><b>Assignees:</b>{{assignees}}</span>
+          <span><b>Assignees:</b>{{#each assignees}} {{this.first_name}} {{this.last_name}} {{/each}}</span>
         </div>
         <div class="status">
           <span><b>Status:</b> {{status}}</span> 

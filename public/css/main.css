@@ -16,11 +16,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', end
 .container .tasklist .item .image{background-image: url('/images/bullet_triangle_grey.png');background-repeat:no-repeat;}
 .container .tasklist .item .image:hover{background-image: url('/images/bullet_triangle_blue.png');background-repeat:no-repeat;}
 .container .tasklist .item .content{padding-top:50px;max-height:0;transition: max-height 3.15s ease-out;overflow:hidden;}
-.container .tasklist .item .content:hover{max-height:500px;transition: max-height 4.25 ease-in;}
-.container .tasklist .item .content:hover > .metadata{display:inline; line-height:2em;}
+.container .tasklist .item .content:hover > .metadata{display:inline;}
 .container .tasklist .item .content .header{;}
 .container .tasklist .item .content .description{;}
-.container .tasklist .item .content .metadata{display:none;width:50%;height:50%;}
+.container .tasklist .item .content .metadata{display:none;width:50%;height:50%;line-height:3em;}
 .container .tasklist .item .content .metadata:hover{;}
 div.creator{;};
 div.creator:hover{;}

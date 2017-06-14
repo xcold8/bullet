@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bullet System Login</title>
+    <link rel="stylesheet" href="/css/semantic.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <script type="text/javascript" src="/css/jquery.min.js"></script>
+    <script type="text/javascript" src="/css/handlebars-v4.0.10.js"></script>
+</head>
+</body>
+	<div class="container">
+		<div class="heading">
+			<h1>Bullet</h1>
+			<h3>Please login to continue</h3>
+		</div>
+		<div class="forms">
+			<form action="/login_auth" method="post">
+				<div class="email">
+					<div class="ui input focus">
+						<input type="text" placeholder="Email" name="username">
+					</div>
+				</div>
+				<div class="password">
+					<div class="ui input focus">
+						<input type="password" placeholder="Password" name="password">
+					</div>
+				</div>
+				<div class="submitl">
+					<button class="ui violet basic button" type="submit" value="Log In">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</html>

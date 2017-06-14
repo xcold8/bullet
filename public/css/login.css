@@ -1,0 +1,19 @@
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f6f8f9+0,e5ebee+50,d7dee3+100,f5f7f9+100 */
+body{
+background: #f6f8f9; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, #f6f8f9 0%, #e5ebee 50%, #d7dee3 100%, #f5f7f9 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, #f6f8f9 0%,#e5ebee 50%,#d7dee3 100%,#f5f7f9 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, #f6f8f9 0%,#e5ebee 50%,#d7dee3 100%,#f5f7f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=1 );
+font-family:Helvetica;
+} /* IE6-9 fallback on horizontal gradient */
+.container{margin: 0 auto;width:25%;border: solid 4px purple;border-radius:3px;height:300px;background:grey}
+.container .heading{height:100px;}
+.container .heading h1{text-align: center;color:yellow;text-shadow: 2px 2px black;}
+.container .heading h2{text-align: center;color:purple;text-shadow: 2px 2px silver;}
+.container .heading h3{text-align:center;color:lime;}
+.container .forms{margin: 0 auto;text-align:center;}
+.container .forms .email{;}
+.container .forms .password{;}
+.container .forms .submitl{padding-top:10px;}
+
