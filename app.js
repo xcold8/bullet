@@ -2,6 +2,14 @@ var path = require('path');
 var express = require('express');
 var session = require('express-session');
 var app = express();
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: true, 
+  			maxAge:36000
+  }
+}));
 var flash = require('connect-flash');
 var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 var cookieParser = require('cookie-parser');
@@ -12,7 +20,6 @@ mongoose.Promise = global.Promise;
 var models = require('./models');
 var Task = models.Task;
 var User = models.User;
-var user_id = '59410cfda172050d645cce72';
 var bCrypt = require('bcrypt');
 var saltRounds = 10;
 var myPlaintextPassword = 's0/\/\P4$$w0rD';
@@ -21,6 +28,15 @@ var isValidPassword = function(user, password){
   return bCrypt.compareSync(password, user.password);
 };
 require('handlebars');
+function checkAuthentication(req,res,next){
+    if(req.isAuthenticated()){
+        //if user is looged in, req.isAuthenticated() will return true 
+        next();
+    } else {
+    	console.log('2');
+        res.redirect("/login");
+    }
+}
 
 passport.use('local', new LocalStrategy({
     passReqToCallback : true
@@ -50,12 +66,6 @@ passport.use('local', new LocalStrategy({
       }
     );
 }));
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(function(user, done) {
@@ -74,27 +84,31 @@ var jsonParser = bodyParser.json();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 // redirect to tasks view
-app.get('/', function(req, res){
-		res.redirect('/login');	
+app.get('/', checkAuthentication, function(req, res){
+		res.redirect('/tasks');	
 });
-//add a public folder to static route
+//add a public folder to static router
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/tasks', function(req, res){
+app.get('/tasks',checkAuthentication, function(req, res){
+	console.log(req.user);
 	res.sendFile(__dirname + '/public/bullet.html');
-		Task.find({'creator.$oid':+user_id})
-		.exec(function(err, results){
-			if (!err){
-				console.log(results);
-				return results;
-			}
-			else {
-				console.log('err occured: '+err);
-			}
-		});
+
 });
-app.get('/api/getData', function (req, res){
+	
+		//Task.find({'creator.$oid':req.user})
+		//.exec(function(err, results){
+		//	if (!err){
+		//		console.log(results);
+		//		return results;
+		//}
+		//	else {
+		//		console.log('err occured: '+err);
+		//	}
+		//});
+app.get('/api/getData', checkAuthentication, function (req, res){
+	console.log(req.session.passport);
 	Task.
-		findOne({'creator':user_id}).
+		findOne({'creator':req.user._id}).
 		populate('creator').
 		populate('assignees').
 		exec(function(err, story){
@@ -108,11 +122,13 @@ app.get('/api/getData', function (req, res){
 		});
 
 	});
-app.post('/login_auth', passport.authenticate('local', {
-    successRedirect: '/tasks',
-    failureRedirect: '/login',
-    failureFlash : true
-  }));
+app.post('/login_auth',
+  passport.authenticate('local'), 
+  function (req, res){
+  	req.session.save(() => {
+      res.redirect('/tasks');
+  });
+ });
 
 app.get('/login', function(req,res){
 	res.sendFile(__dirname + '/public/login.html');

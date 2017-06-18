@@ -7,15 +7,16 @@ $(document).ready(function(){
 		console.log('templating...');
 		var html = templateScript(data);
 	  	$('.tasklist').append(html);
-	}
+}
 
-	$.ajax({
+
+	/*$.ajax({
 	  type:'GET',
 	  async: false,
 	  dataType: 'json',
 	  url: '/api/getData',
 	  success: showData,
-	});
+	});*/
 		
 
 });
